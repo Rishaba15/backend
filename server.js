@@ -8,10 +8,14 @@ import pdfParse from 'pdf-parse/lib/pdf-parse.js';
 const app = express();
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 15 * 1024 * 1024 },
+  limits: { fileSize: 4.5 * 1024 * 1024 },
 });
 
-app.use(cors());
+app.use(cors({
+  origin: true,
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
+}));
 app.get('/health', (_request, response) => response.json({ ok: true }));
 
 async function extractText(file) {

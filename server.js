@@ -99,6 +99,10 @@ app.post('/api/summarize', upload.single('file'), async (request, response) => {
   }
 });
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log(`StudyShare AI backend running on http://localhost:${process.env.PORT || 3000}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(process.env.PORT || 3000, () => {
+    console.log(`StudyShare AI backend running on http://localhost:${process.env.PORT || 3000}`);
+  });
+}
+
+export default app;
